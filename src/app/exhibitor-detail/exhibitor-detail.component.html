@@ -1,0 +1,25 @@
+<h3>Featured Exhibitors</h3>
+<div class="grid grid-pad">
+  <div *ngFor="let x of x" class="col-1-4">
+    <div class="module exhibitor">
+      <h4>{{x.companyname}}</h4>
+      <p>{{x.categories}}</p>
+      <p>{{x.description}}</p>
+      <div class="exhibitors ui six column grid doubling stackable masonry">
+        <div *ngFor="let product of x.products" class="column">   
+          <div class="ui card">
+            <div class="content">        
+              <div class="header">{{product}}</div>
+              <div class="meta">
+                  <span class="category"></span>
+                </div>
+              <div class="description">
+                <p></p>
+              </div>
+            </div>            
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="column grid two">
+  <h1 class="ui header">Exhibitors 2018</h1>
+  <form #exSearch="ngForm" (ngSubmit)="searchExhibitor(searchVal.value)">
+    <div class="ui search">
+      <div class="ui icon input">
+        <input class="prompt" type="text" name="companyname" #searchVal="ngModel" [(ngModel)]="filter.companyname" id="search" placeholder="Search exhibitor">
+        <i (click)="searchExhibitor('blues')" class="search icon"></i>
+      </div>      
+    </div>    
+  </form> 
+  <div class="filters">          
+    <div class="ui checkbox" *ngFor="let category of categories">
+      <input type="checkbox" name="{{category}}" (click)="getExhibitorsByCategories(category)">      
+      <label>{{category}}</label>
+    </div>         
+    <label>Select Country</label>
+    <select class="ui dropdown fluid" [(ngModel)]="filter.country">     
+      <option value="">-- Select Country --</option>
+      <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>        
+    </select> 
+  </div>
+  <br>
+  <!-- | exhibitorfilter:filter -->
+  <div class="exhibitors ui three column grid doubling stackable masonry">
+    <div *ngFor="let exhibitor of exhibitors | exhibitorfilter:filter  " class="column">   
+      <div class="ui fluid card">
+        <div class="image">
+          <img src="{{exhibitor.logo}}">
+        </div>
+        <div class="content">        
+          <div class="header"><a style="color:#000;" routerLink="/detail/{{exhibitor.exhibitorguid}}">{{exhibitor.companyname}}</a></div>
+          <div class="meta">
+              <span class="category">{{exhibitor.entry | uppercase}}</span>
+              <p>
+                <span class="country">{{exhibitor.country | uppercase}}</span>
+              </p>
+            </div>
+          <div class="description">
+            <div *ngFor="let product of exhibitor.products" class="column">                 
+              {{product}}                  
+            </div>
+          </div>
+        </div>
+        <div class="extra content">          
+          <span class="right floated star">
+            <i class="star icon"></i>
+            Add to favorites
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

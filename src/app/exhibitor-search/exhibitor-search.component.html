@@ -1,0 +1,25 @@
+<div>
+  <div class="ui category search">
+    <div class="ui icon input">
+      <input #searchBox id="search-box" (keyup)="search(searchBox.value)" class="prompt" type="text" placeholder="Search exhibitor...">
+      <i class="search icon"></i>
+    </div>
+    <div class="results">
+      <div class="category" *ngFor="let exhibitor of exhibitors$ | async">
+          <div class="name">
+            {{exhibitor.entry}}
+          </div>
+          <a class="result">
+          <div class="content">
+            <div class="title">
+              {{exhibitor.name}}
+            </div>
+            <div class="description">
+              {{exhibitor.stand}}
+            </div>
+          </div>
+          </a>
+        </div>        
+    </div>
+  </div>
+</div>
